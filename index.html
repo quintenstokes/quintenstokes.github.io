@@ -1,0 +1,799 @@
+ <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Quinten Stokes's Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+<style>
+.fade-in {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+</style>
+<script>
+var active = "none";
+var job_page = 1;
+var total_job_pages = 2;//TODO: ADJUST
+var responsibilities_pg = 1;
+var total_responsibility_pages = 1;//TODO: ADJUST WITHIN PG_SWITCH()
+var edu_page = 1;
+var total_edu_pages = 1;//TODO: ADJUST
+//list of skills and professional positions it applies to
+var soft_skills = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'critical thinking', 'creativity', 'work ethic', 'leadership', 'team management', 'project management', 'interpersonal skills', 'organizational skills','time management','stress management']
+var hard_skills = ['Computer Diagnostics','VPNs','Remote Desktops','IT Management','networking','event preperation','accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
+var software_skill = ['Firewall','Windows','Linux','Marketing Automation','Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github', 'Basic Hardware Maintenance', 'Medical Device Usage']
+ 
+var cto_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'creativity', 'work ethic', 'leadership', 'team management', 'critical thinking','interpersonal skills','time management','stress management']
+var cto_skills_hard = ['Computer Diagnostics','VPNs','Remote Desktops','IT Management','HTML','CSS','SQL','JavaScript','R Code']
+var cto_skills_software = ['Firewall','Windows','Linux','Microsoft Office','Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+
+var owner_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'leadership', 'adaptability', 'problem solving', 'critical thinking', 'creativity','interpersonal skills','time management','organizational skills','stress management']
+var owner_skills_hard = ['accounting','business plan development','business operations','marketing']
+var owner_skills_software = ['Windows','Microsoft Office','Google Forms','Google Sheets/Excel','R Studio','Github']
+
+var model_skills_soft = ['verbal communication','teamwork','adaptability','work ethic','time management','stress management','interpersonal skills']
+var model_skills_hard = ['marketing','networking','event preperation']
+var model_skills_software = ['Microsoft Office','Marketing Automation', 'Github']
+
+var homemaker_skills_soft = ['written communication', 'verbal communication', 'adaptability', 'work ethic', 'interpersonal skills'];
+var homemaker_skills_hard = ['CPR Certified','Med Certified'];
+var homemaker_skills_software = ['Basic Hardware Maintenance', 'Medical Device Usage'];
+
+var itrepairspecialist_skills_soft = ['written communication', 'verbal communication', 'work ethic','interpersonal skills','problem solving','critical thinking'];
+var itrepairspecialist_skills_hard = ['VPNs','Remote Desktops','Computer Diagnostics'];
+var itrepairspecialist_skills_software = ['Firewall','Windows','Linux'];
+
+
+function job_descript(x, y){
+	//TODO: ADD RIGHT ARROW TO APPROPRIATE ONES
+	responsibilities_pg = 1;
+	total_responsibility_pages = 1;
+	document.getElementById('left-responsibilities').style.display = "none";
+	document.getElementById('right-responsibilities').style.display = "none";
+	if(y == "none"){
+		document.getElementById('edu').style.display = "none";
+	}
+	else{
+		document.getElementById('edu').style.display = "block";
+	}
+	//TODO: ADJUST TO JOB DESCRIPTS
+	//PG 1
+	if(x == "cto" && y == "none"){
+		document.getElementById('cto-descript').style.display = "block";
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('cto-skills-soft').innerHTML = "";
+		document.getElementById('cto-skills-hard').innerHTML = "";
+		document.getElementById('cto-skills-software').innerHTML = "";
+		var i = 0;
+		var y = cto_skills_soft.length;
+		while(i < y){
+			//document.getElementById('cto-skills-soft').innerHTML = document.getElementById('cto-skills-soft').innerHTML + "<button class='soft-skills'>" + cto_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = cto_skills_hard.length;
+		while(i < y){
+			//document.getElementById('cto-skills-hard').innerHTML = document.getElementById('cto-skills-hard').innerHTML + "<button class='hard-skills'>" + cto_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = cto_skills_software.length;
+		while(i < y){
+			//document.getElementById('cto-skills-software').innerHTML = document.getElementById('cto-skills-software').innerHTML + "<button class='software-skills'>" + cto_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('cto-skills').style.display = "block";
+	}
+	else {
+		document.getElementById('cto-descript').style.display = "none";
+	}
+	if(x == "owner" && y == "none"){
+		document.getElementById('owner-descript').style.display = "block";
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('owner-skills-soft').innerHTML = "";
+		document.getElementById('owner-skills-hard').innerHTML = "";
+		document.getElementById('owner-skills-software').innerHTML = "";
+		var i = 0;
+		var y = owner_skills_soft.length;
+		while(i < y){
+			//document.getElementById('owner-skills-soft').innerHTML = document.getElementById('owner-skills-soft').innerHTML + "<button class='soft-skills'>" + owner_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_hard.length;
+		while(i < y){
+			//document.getElementById('owner-skills-hard').innerHTML = document.getElementById('owner-skills-hard').innerHTML + "<button class='hard-skills'>" + owner_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_software.length;
+		while(i < y){
+			//document.getElementById('owner-skills-software').innerHTML = document.getElementById('owner-skills-software').innerHTML + "<button class='software-skills'>" + owner_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('owner-skills').style.display = "block";
+	}
+	else {
+		document.getElementById('owner-descript').style.display = "none";
+	}
+	if(x == "model" && y == "none"){
+		document.getElementById('model-descript').style.display = "block";
+		document.getElementById('model-skills-soft').innerHTML = "";
+		document.getElementById('model-skills-hard').innerHTML = "";
+		document.getElementById('model-skills-software').innerHTML = "";
+		var i = 0;
+		var y = model_skills_soft.length;
+		while(i < y){
+			//document.getElementById('model-skills-soft').innerHTML = document.getElementById('model-skills-soft').innerHTML + "<button class='soft-skills'>" + model_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = model_skills_hard.length;
+		while(i < y){
+			//document.getElementById('model-skills-hard').innerHTML = document.getElementById('model-skills-hard').innerHTML + "<button class='hard-skills'>" + model_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = model_skills_software.length;
+		while(i < y){
+			//document.getElementById('model-skills-software').innerHTML = document.getElementById('model-skills-software').innerHTML + "<button class='software-skills'>" + model_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('model-skills').style.display = "block";
+	}
+	else {
+		document.getElementById('model-descript').style.display = "none";
+	}
+	if(x == "homemaker" && y == "none"){
+		document.getElementById('homemaker-descript').style.display = "block";
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('homemaker-skills-soft').innerHTML = "";
+		document.getElementById('homemaker-skills-hard').innerHTML = "";
+		document.getElementById('homemaker-skills-software').innerHTML = "";
+		var i = 0;
+		var y = homemaker_skills_soft.length;
+		while(i < y){
+			//document.getElementById('homemaker-skills-soft').innerHTML = document.getElementById('homemaker-skills-soft').innerHTML + "<button class='soft-skills'>" + homemaker_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = homemaker_skills_hard.length;
+		while(i < y){
+			//document.getElementById('homemaker-skills-hard').innerHTML = document.getElementById('homemaker-skills-hard').innerHTML + "<button class='hard-skills'>" + homemaker_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = homemaker_skills_software.length;
+		while(i < y){
+			//document.getElementById('homemaker-skills-software').innerHTML = document.getElementById('homemaker-skills-software').innerHTML + "<button class='software-skills'>" + homemaker_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('homemaker-skills').style.display = "block";
+	}
+	else {
+		document.getElementById('homemaker-descript').style.display = "none";
+	}
+	if(x == "itrepairspecialist" && y == "none"){
+		document.getElementById('itrepairspecialist-descript').style.display = "block";
+		//total_responsibility_pages = 2;
+		//document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-soft').innerHTML = "";
+		document.getElementById('itrepairspecialist-skills-hard').innerHTML = "";
+		document.getElementById('itrepairspecialist-skills-software').innerHTML = "";
+		var i = 0;
+		var y = itrepairspecialist_skills_soft.length;
+		while(i < y){
+			//document.getElementById('itrepairspecialist-skills-soft').innerHTML = document.getElementById('itrepairspecialist-skills-soft').innerHTML + "<button class='soft-skills'>" + itrepairspecialist_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = itrepairspecialist_skills_hard.length;
+		while(i < y){
+			//document.getElementById('itrepairspecialist-skills-hard').innerHTML = document.getElementById('itrepairspecialist-skills-hard').innerHTML + "<button class='hard-skills'>" + itrepairspecialist_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = itrepairspecialist_skills_software.length;
+		while(i < y){
+			//document.getElementById('itrepairspecialist-skills-software').innerHTML = document.getElementById('itrepairspecialist-skills-software').innerHTML + "<button class='software-skills'>" + itrepairspecialist_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('itrepairspecialist-skills').style.display = "block";
+	}
+	else {
+		document.getElementById('itrepairspecialist-descript').style.display = "none";
+	}
+	if(x == "programmeranalyst" && y == "none"){
+		document.getElementById('programmeranalyst-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('programmeranalyst-descript').style.display = "none";
+	}
+	//PG 2
+	if(x == "webcontentmanager" && y == "none"){
+		document.getElementById('webcontentmanager-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('webcontentmanager-descript').style.display = "none";
+	}
+	if(x == "webassistant" && y == "none"){
+		document.getElementById('webassistant-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('webassistant-descript').style.display = "none";
+	}
+	if(x == "helpdesk" && y == "none"){
+		document.getElementById('helpdesk-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('helpdesk-descript').style.display = "none";
+	}
+	//PG 3
+	//PG 4
+	//PG 5
+}
+//TODO: ADD EDU
+function highlight(x){
+	if(x == "left-jobs"){
+		document.getElementById('left-jobs').style.color = "#ffb300";
+	}
+	else if(x == "right-jobs"){
+		document.getElementById('right-jobs').style.color = "#ffb300";
+	}
+	else if(x == "left-responsibilities"){
+		document.getElementById('left-responsibilities').style.color = "#ffb300";
+	}
+	else if(x == "right-responsibilities"){
+		document.getElementById('right-responsibilities').style.color = "#ffb300";
+	}
+}
+//TODO: ADD EDU
+function unhighlight(){
+	document.getElementById('left-jobs').style.color = "white";
+	document.getElementById('right-jobs').style.color = "white";
+	document.getElementById('left-responsibilities').style.color = "white";
+	document.getElementById('right-responsibilities').style.color = "white";
+}
+function switch_pg(x,y){
+	if(x == "jobs"){
+		document.getElementById('left-jobs').style.display = "block";
+		document.getElementById('right-jobs').style.display = "block";
+		if(y == "left"){
+			job_page = job_page - 1;
+		}
+		else {
+			job_page = job_page + 1;
+		}
+		if(job_page == 1){
+			document.getElementById('left-jobs').style.display = "none";
+		}
+		if(job_page == total_job_pages){
+			document.getElementById('right-jobs').style.display = "none";
+		}
+		var theid = "jobs-pg" + job_page;
+		document.getElementById('jobs-pg1').style.display = "none";
+		document.getElementById('jobs-pg2').style.display = "none";
+		document.getElementById('jobs-pg3').style.display = "none";
+		document.getElementById('jobs-pg4').style.display = "none";
+		document.getElementById('jobs-pg5').style.display = "none";
+		document.getElementById(theid).style.display = "block";
+	}
+	else if(x == "responsibilities"){
+		if(document.getElementById('cto-descript').style.display == "block" || document.getElementById('owner-descript').style.display == "block" || document.getElementById('homemaker-descript').style.display == "block"){
+			total_responsibility_pages = 2;
+		}
+		if(total_responsibility_pages == 1){
+			document.getElementById('left-responsibilities').style.display = "none";
+			document.getElementById('right-responsibilities').style.display = "none";
+		}
+		else {
+			document.getElementById('left-responsibilities').style.display = "block";
+			document.getElementById('right-responsibilities').style.display = "block";
+			if(y == "left"){
+				responsibilities_pg = responsibilities_pg - 1;
+			}
+			else {
+				responsibilities_pg = responsibilities_pg + 1;
+			}
+			if(responsibilities_pg == 1){
+				document.getElementById('left-responsibilities').style.display = "none";
+			}
+			if(responsibilities_pg == total_responsibility_pages){
+				document.getElementById('right-responsibilities').style.display = "none";
+			}
+			if(document.getElementById('cto-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('cto-pg-1').style.display = "block";
+					document.getElementById('cto-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('cto-pg-1').style.display = "none";
+					document.getElementById('cto-pg-2').style.display = "block";
+				}
+			}
+			else if(document.getElementById('owner-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('owner-pg-1').style.display = "block";
+					document.getElementById('owner-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('owner-pg-1').style.display = "none";
+					document.getElementById('owner-pg-2').style.display = "block";
+				}
+			}
+			else if(document.getElementById('homemaker-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('homemaker-pg-1').style.display = "block";
+					document.getElementById('homemaker-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('homemaker-pg-1').style.display = "none";
+					document.getElementById('homemaker-pg-2').style.display = "block";
+				}
+			}
+		}
+	}
+	else if(x == "education"){
+		//TODO: AD EDU
+	}
+	adjust_height();
+}
+function adjust_height(){
+	if(document.getElementById('work_box').clientHeight > document.getElementById('edu_box').clientHeight){
+		var height = document.getElementById('work_box').clientHeight + "px";
+		document.getElementById('edu_box').style.height = height;
+	}
+	else {
+		var height = document.getElementById('edu_box').clientHeight + "px";
+		document.getElementById('work_box').style.height = height;
+	}
+}
+function carasoulcto(){
+	if(document.getElementById('cto-skills-soft').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "none";
+		document.getElementById('cto-skills-hard').style.display = "block";
+		document.getElementById('cto-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('cto-skills-hard').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "none";
+		document.getElementById('cto-skills-hard').style.display = "none";
+		document.getElementById('cto-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('cto-skills-software').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "block";
+		document.getElementById('cto-skills-hard').style.display = "none";
+		document.getElementById('cto-skills-software').style.display = "none";
+		setTimeout(carasoulcto,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulowner(){
+	if(document.getElementById('owner-skills-soft').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "none";
+		document.getElementById('owner-skills-hard').style.display = "block";
+		document.getElementById('owner-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('owner-skills-hard').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "none";
+		document.getElementById('owner-skills-hard').style.display = "none";
+		document.getElementById('owner-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('owner-skills-software').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "block";
+		document.getElementById('owner-skills-hard').style.display = "none";
+		document.getElementById('owner-skills-software').style.display = "none";
+		setTimeout(carasoulowner,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulmodel(){
+	if(document.getElementById('model-skills-soft').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "none";
+		document.getElementById('model-skills-hard').style.display = "block";
+		document.getElementById('model-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('model-skills-hard').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "none";
+		document.getElementById('model-skills-hard').style.display = "none";
+		document.getElementById('model-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('model-skills-software').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "block";
+		document.getElementById('model-skills-hard').style.display = "none";
+		document.getElementById('model-skills-software').style.display = "none";
+		setTimeout(carasoulmodel,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulhomemaker(){
+	if(document.getElementById('homemaker-skills-soft').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "none";
+		document.getElementById('homemaker-skills-hard').style.display = "block";
+		document.getElementById('homemaker-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('homemaker-skills-hard').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "none";
+		document.getElementById('homemaker-skills-hard').style.display = "none";
+		document.getElementById('homemaker-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('homemaker-skills-software').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "block";
+		document.getElementById('homemaker-skills-hard').style.display = "none";
+		document.getElementById('homemaker-skills-software').style.display = "none";
+		setTimeout(carasoulhomemaker,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulitrepairspecialist(){
+	if(document.getElementById('itrepairspecialist-skills-soft').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('itrepairspecialist-skills-hard').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('itrepairspecialist-skills-software').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "none";
+		setTimeout(carasoulitrepairspecialist,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+</script>
+</head>
+<body onload='adjust_height()'>
+<!-- partial:index.partial.html -->
+<div class="resume">
+  <div class="base">
+    <div class="profile">
+      <div class="photo">
+        <!--<img src="" /> -->
+        <i class="fas fa-rocket"></i>
+      </div>
+      <div class="info">
+        <h1 class="name">Quinten Stokes</h1>
+        <h2 class="job">S&T Engineering Student</h2>
+      </div>
+    </div>
+    <div class="about">
+      <h3>Professional Summary</h3>Motivated, self-directed graduating engineer student with exceptional interpersonal skills, root cause analysis, and problem solving. Am well respected by 
+	  co-workers for statistical analysis, research, graphing & data representation. Works well in fast paced environment with ability to manage tasks under pressure while achieving top, professional quality 
+	  results.
+    </div>
+	<div class="contact">
+      <h3>Contact Me</h3>
+      <div class="call"><a href="tel:417-664-1679"><i class="fas fa-phone"></i><span>417-664-1679</span></a></div>
+      <div class="address">
+		<a href="https://goo.gl/maps/J9gzycAa6qowC5dn6"><i class="fas fa-map-marker"></i>
+			<span>Rolla, MO</span>
+			<span><small>*Willing to relocate</small></span>
+		</a>
+      </div>
+      <div class="email"><a href="mailto:quintenstokes@gmail.com"><i class="fas fa-envelope"></i><span>quintenstokes@gmail.com</span></a></div>
+      <div class="website"><a href="https://quintenstokes.github.io" target="_blank"> <i class="fas fa-home"></i><span>My Online CV</span></a></div>
+    </div>
+	<div class="skills">
+		<h3>Hard Skills</h3>
+		&nbsp&nbsp&nbspStatistical Analysis<br>
+		&nbsp&nbsp&nbspGraphing<br>
+		&nbsp&nbsp&nbspData Representation<br>
+		&nbsp&nbsp&nbspDrafting<br>
+		&nbsp&nbsp&nbspResearch<br>
+		&nbsp&nbsp&nbspFlowcharting<br>
+		<br>
+		<h3>Soft Skills</h3>
+		&nbsp&nbsp&nbspInterpersonal Skills<br>
+		&nbsp&nbsp&nbspCommunication<br>
+		&nbsp&nbsp&nbspProfessionalism<br>
+		&nbsp&nbsp&nbspResearch<br>
+		&nbsp&nbsp&nbspProblem Solving<br>
+		&nbsp&nbsp&nbspRoot Cause Analysis<br>
+		</div>
+    
+  </div>
+  <div class="func">
+    <div class="work" id="work_box">
+      <h3><i class="fa fa-briefcase"></i>Experience</h3>
+      <ul>
+		<span id='jobs-pg1' style="display: block;">
+			<li onclick="job_descript('cto', document.getElementById('cto-descript').style.display), setInterval(carasoulcto,5000)">
+				<span>CTI Driver</span>
+				<small>Future Care, LLC
+				<small>Feb 2023 - Current
+				</small></small>
+			</li>
+			<li onclick="job_descript('owner', document.getElementById('owner-descript').style.display), setInterval(carasoulowner,5000)">
+				<span>Engineer Intern</span>
+				<small>Dialectic Engineering Inc.
+				<small>May 2022 - August 2022
+				<small>Reason for Leave: End of Internship
+				</small></small></small>
+			</li>
+			<li onclick="job_descript('model', document.getElementById('model-descript').style.display), setInterval(carasoulmodel,5000)">
+				<span>Engineer Intern</span>
+				<small>The Durham Company
+				<small>May 2018 - August 2021
+				<small>Reason for Leave: End of Internship
+				</small></small></small>
+			</li>
+			<li onclick="job_descript('homemaker', document.getElementById('homemaker-descript').style.display), setInterval(carasoulhomemaker,5000)">
+				<span>Waiter</span>
+				<small>Steak & Shake
+				<small>May 2017 - September 2017
+				<small>Reason for Leave: Scheduling conflicts with education.
+				</small></small></small>
+			</li>
+			<li onclick="job_descript('itrepairspecialist', document.getElementById('itrepairspecialist-descript').style.display), setInterval(carasoulitrepairspecialist,5000)">
+				<span>Lifegaurd</span>
+				<small>Lebanon City Parks Department
+				<small>May 2016 - August 2016
+				<small>Reason For Leave: End of Summer
+				</small></small></small>
+			</li>
+		</span>
+      </ul>
+    </div>
+    <div class="edu" id="edu_box">
+		<div id='edu' style="display: block">
+      <h3><i class="fa fa-graduation-cap"></i>Education</h3>
+      <ul>
+		<!--fall 2018 hs magna cumme laude-->
+		<li><span>Med Certified: Level 1 Medication Aide</span><small>Future Care, LLC</small><small>Completed: August 29, 2023</small></li>
+		<li><span>BS Electrical Engineering</span><small>Missouri S&T</small><small>Expected Graduation: Fall 2023</small></li>
+		<li><span>CT Fundamentals of Electrical & Computer Engineering</span><small>NCEES</small><small>Expected Testing: Upon Graduation</small></li>
+		<li><span>CT Principles & Practice of Engineering</span><small>NCEES</small><small>Expected Testing: Upon Graduation</small></li>
+		<li><span>BS Mechanical Engineering</span><small>Missouri S&T</small><small>Expected Graduation: Fall 2025</small></li>
+      </ul>
+	  </div>
+		<div style="display: none" id="cto-descript">
+			<h3>CTI Driver</h3>
+			<small>
+				<p><b>Job Description:</b> Transport mentally challenged residents under the supervision of Future Care by ensuring their safe and timely arrival to pre-planned destinations.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Arrive at Pickup Location on Time, Note Issues with Drives or Residents, Resolve Schedule Conflicts</li>
+				</ul>
+				<span id='cto-skills' style="display: none">
+					<span id='cto-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='cto-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='cto-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+		<div style="display: none" id="owner-descript">
+			<h3>Engineer Intern</h3>
+			<p><b>Job Responsibilities:</b></p>
+			<ul>
+				<li>Create CAD Drafts of Customer Electrical Layouts, Update or Create Spreadsheets for Electrical Layouts, Communicate and Resolve Issues Regarding Customer Requests or Layouts, Check Layouts for National Electrical Code Compliance</li>
+			</ul>
+			<small>
+				<p><b>Job Description:</b> Work with co-workers in a small team setting to provide drafting, CAD modeling, and spreadsheet work as necessary for electrical architecture.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>[responsibilities]</li>
+				</ul>
+				<span id='owner-skills' style="display: none">
+					<span id='owner-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='owner-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='owner-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+		<div style="display: none" id="model-descript">
+			<h3>Engineer Intern</h3>
+			<ul>
+				<li>Create CAD Drafts and Models of Parts and Units, Research Possible Improvements to Production, Rearch and Test Quality Control Improvements, Research and Check Parts, Products, and Labels for UL, Made In America, and National Electrical Code Compliance</li>
+			</ul>
+			<small>
+				<p><b>Job Description:</b> Work with co-workers and directly with upper management to research improvements to production lines including quality control and UL and Made In America compliance for parts and products while working seperately to CAD model existing parts.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>[responsibilities]</li>
+				</ul>
+				<span id='model-skills' style="display: none">
+					<span id='model-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='model-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='model-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+		<div style="display: none" id="homemaker-descript">
+			<h3>Waiter</h3>
+			<p><b>Job Responsibilities:</b></p>
+			<ul>
+				<li>Escort Customers to Seating, Take Customer Orders Quickly and Accurately, Deliver Food to Customers in a Timely Manner, Provide and Refill Customer Drinks, Maintain a Polite Demeanor</li>
+			</ul>
+			<small>
+				<p><b>Job Description:</b> Tend to customer orders with top quality service under peak hours with speed and accuracy while balancing extra duties including upholding a clean front and back area above health code standards.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>[responsibilities]</li>
+				</ul>
+				<span id='homemaker-skills' style="display: none">
+					<span id='homemaker-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='homemaker-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='homemaker-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+		<div style="display: none" id="itrepairspecialist-descript">
+			<h3>Lifegaurd</h3>
+			<p><b>Job Responsibilities:</b></p>
+			<ul>
+			<li>Vigilantly Watch Pool for Disturbances, Ensure Guest Safety, Resolve Guest Issues as Possible, Work with Co-Workers to Maintain Pool Cleanliness and Security</li>
+			</ul>
+			<small>
+				<p><b>Job Description:</b>Keep active watch to ensure the safety of both staff and attendees by upkeep of rules to ensure the safety and enjoyment of all customers. When concerns are brought to my attention, ensure that my post is still under active watch to provide quality customer service while ensureing the safety of others. Lastly, stay late to assist with cleaning duties while also building relations with co-workers to provide a safer and more enjoyable work environment, and therefore, experience for everybody. </p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>[responsibilities]</li>
+				</ul>
+				<span id='itrepairspecialist-skills' style="display: none">
+					<span id='itrepairspecialist-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='itrepairspecialist-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='itrepairspecialist-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+			  <p style="text-align: right; bottom: 0; right: 0;"><span class='left' id='left-responsibilities' onmouseover="highlight('left-responsibilities')" onmouseout="unhighlight()" 
+		style="display: none;" onclick="switch_pg('responsibilities','left')">&#8592;</span> <span class='right' id='right-responsibilities' onmouseover="highlight('right-responsibilities')" 
+		onmouseout="unhighlight()" style="display: none;"  onclick="switch_pg('responsibilities','right')">&#8594;</span></p>
+    </div>
+    <div class="skills-prog">
+      <h3><i class="fas fa-code"></i>Programming Skills</h3>
+      <ul>
+        <li data-percent="70"><span>CAD</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>7 Years</span></div>
+          </div>
+        </li>
+        <li data-percent="60"><span>Microsoft Office Suite</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>6 Years</span></div>
+          </div>
+        </li>
+        <li data-percent="40"><span>Matlab</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>4 Years</span></div>
+          </div>
+        </li>
+		<li data-percent="20"><span>Simulink</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>2 Years</span></div>
+          </div>
+        </li>
+        <li data-percent="20"><span>Multisim</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>2 Years</span></div>
+          </div>
+        </li>
+		<li data-percent="20"><span>LabVIEW</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>2 Years</span></div>
+          </div>
+        </li>
+		<li data-percent="10"><span>PLC</span>
+          <div class="skills-bar">
+            <div class="bar tooltip"><span class='tooltiptext' style='left: 100%'>1 Year </span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+	<!--
+    <div class="skills-soft">
+      <h3><i class="fas fa-bezier-curve"></i>Software & Program Skills</h3>
+      <ul>
+        <li data-percent="90">
+          <svg viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="45"></circle>
+            <circle class="cbar" cx="50" cy="50" r="45"></circle>
+          </svg><span>Matlab</span><small></small>
+        </li>
+        <li data-percent="75">
+          <svg viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="45"></circle>
+            <circle class="cbar" cx="50" cy="50" r="45"></circle>
+          </svg><span>Photoshop</span><small></small>
+        </li>
+        <li data-percent="85">
+          <svg viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="45"></circle>
+            <circle class="cbar" cx="50" cy="50" r="45"></circle>
+          </svg><span>InDesign</span><small></small>
+        </li>
+        <li data-percent="65">
+          <svg viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="45"></circle>
+            <circle class="cbar" cx="50" cy="50" r="45"></circle>
+          </svg><span>Dreamweaver</span><small></small>
+        </li>
+      </ul>
+    </div>
+	-->
+    <div class="interests">
+      <h3><i class="fas fa-star"></i>Interests</h3>
+      <div class="interests-items">
+        <div class="art"><i class="fas fa-palette"></i><span>Woodworking</span></div>
+        <div class="art"><i class="fas fa-book"></i><span>Machining</span></div>
+        <div class="movies"><i class="fas fa-gamepad"></i><span>Videogames</span></div>
+        <div class="music"><i class="fas fa-headphones"></i><span>Music</span></div>
+        <div class="games"><i class="fas fa-book"></i><span>Reading</span></div>
+      </div>
+    </div>
+	
+ </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
